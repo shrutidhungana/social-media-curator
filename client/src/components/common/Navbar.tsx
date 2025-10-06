@@ -17,11 +17,7 @@ const Navbar = ({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav
-      className={`${bgColor} ${
-        sticky ? "sticky top-0" : ""
-      } w-full shadow-lg z-50`}
-    >
+    <nav className={`${bgColor} ${sticky ? "sticky top-0" : ""} w-full z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Brand */}
         <Link
@@ -60,28 +56,36 @@ const Navbar = ({
         </div>
       </div>
 
-      {/* Mobile Drawer (<md) */}
-      <div
-        className={`md:hidden bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg w-full absolute top-16 left-0 transition-transform duration-300 ${
-          mobileOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        {items.map(({ label, href, icon: Icon }) => (
-          <Link
-            key={label}
-            href={href}
-            className={`flex items-center gap-4 px-6 py-5 border-b border-white/20 transition-colors duration-200 text-lg font-medium ${
-              router.pathname === href
-                ? "bg-white text-blue-600 font-semibold"
-                : "text-white hover:bg-white hover:text-blue-600"
-            }`}
-            onClick={() => setMobileOpen(false)}
+      {/* Mobile Drawer Overlay */}
+      {mobileOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
+        >
+          <div
+            className="absolute top-0 left-0 w-3/4 max-w-xs h-full bg-gradient-to-b from-blue-600 to-purple-600 shadow-lg p-6"
+            onClick={(e) => e.stopPropagation()}
           >
-            {Icon && <Icon size={20} />}
-            {label}
-          </Link>
-        ))}
-      </div>
+            <div className="flex flex-col gap-6 mt-4">
+              {items.map(({ label, href, icon: Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className={`flex items-center gap-4 px-2 py-3 rounded-lg text-lg font-medium transition-colors duration-200 ${
+                    router.pathname === href
+                      ? "bg-white text-blue-600 font-semibold"
+                      : "text-white hover:bg-white hover:text-blue-600"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {Icon && <Icon size={20} />}
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
