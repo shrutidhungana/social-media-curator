@@ -1,4 +1,3 @@
-import { IconType } from "react-icons";
 import {
   FaHome,
   FaBell,
@@ -6,12 +5,8 @@ import {
   FaInfoCircle,
   FaSignInAlt,
 } from "react-icons/fa";
+import type { NavItem } from "@/types/navbarTypes";
 
-export interface NavItem {
-  label: string;
-  href: string;
-  icon: IconType;
-}
 
 export const navbarItems: NavItem[] = [
   { label: "Feed", href: "/feed", icon: FaHome },
