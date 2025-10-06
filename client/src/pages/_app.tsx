@@ -8,11 +8,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Social-Media-curator</title>
+        <title>Social-Media-Curator</title>
         <meta name="description" content="Learning Management System" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon-v2.ico" />
       </Head>
+
       <Navbar
         brand="Politician Curator"
         items={navbarItems}
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
         textColor="text-white"
         sticky
       />
+
       <main className="mt-4">
         <Component {...pageProps} />
       </main>

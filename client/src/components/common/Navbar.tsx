@@ -16,47 +16,73 @@ const Navbar = ({
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Split nav items by position
+  const leftItems = items.filter((i) => i.position === "left");
+  const centerItems = items.filter(
+    (i) => !i.position || i.position === "center"
+  );
+  const rightItems = items.filter((i) => i.position === "right");
+
+  const renderNavItem = (label: string, href: string, Icon?: any) => (
+    <Link
+      key={label}
+      href={href}
+      className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${
+        router.pathname === href
+          ? "bg-white text-blue-600"
+          : `${textColor} hover:bg-white hover:text-blue-600`
+      }`}
+    >
+      {Icon && <Icon size={18} />}
+      {label}
+    </Link>
+  );
+
   return (
     <nav className={`${bgColor} ${sticky ? "sticky top-0" : ""} w-full z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-        {/* Brand */}
-        <Link
-          href="/"
-          className="text-2xl font-extrabold tracking-tight text-white hover:text-gray-200 transition-colors"
-        >
-          {brand}
-        </Link>
-
-        {/* Desktop Menu (md+) */}
-        <div className="hidden md:flex gap-6 items-center">
-          {items.map(({ label, href, icon: Icon }) => (
+        {/* Left items (brand or custom left items) */}
+        <div className="flex items-center gap-4">
+          {leftItems.length > 0 ? (
+            leftItems.map(({ label, href, icon: Icon }) =>
+              renderNavItem(label, href, Icon)
+            )
+          ) : (
             <Link
-              key={label}
-              href={href}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                router.pathname === href
-                  ? "bg-white text-blue-600 font-semibold shadow-md"
-                  : "text-white hover:bg-white hover:text-blue-600"
-              }`}
+              href="/"
+              className={`text-2xl font-extrabold tracking-tight ${textColor} hover:text-gray-200 transition-colors`}
             >
-              {Icon && <Icon size={18} />}
-              {label}
+              {brand}
             </Link>
-          ))}
+          )}
         </div>
 
-        {/* Mobile Hamburger Button (<md) */}
+        {/* Center items */}
+        <div className="hidden md:flex gap-4 items-center">
+          {centerItems.map(({ label, href, icon: Icon }) =>
+            renderNavItem(label, href, Icon)
+          )}
+        </div>
+
+        {/* Right items */}
+        <div className="hidden md:flex gap-4 items-center">
+          {rightItems.map(({ label, href, icon: Icon }) =>
+            renderNavItem(label, href, Icon)
+          )}
+        </div>
+
+        {/* Mobile Hamburger */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 rounded-md border border-white hover:bg-white hover:text-blue-600 transition-colors text-white"
+            className={`p-2 rounded-md border border-white ${textColor} hover:bg-white hover:text-blue-600 transition-colors`}
           >
             {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div
           className="md:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
