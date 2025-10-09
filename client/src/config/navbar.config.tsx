@@ -17,8 +17,9 @@ export const navbarItems: NavItem[] = [
     position: "right",
   },
   { label: "Profile", href: "/profile", icon: FaUser, position: "right" },
+
   {
-    label: "Login/Register",
+    label: "Login",
     href: "/auth/login",
     icon: FaSignInAlt,
     position: "right",
