@@ -63,7 +63,7 @@ const CommonForm = <T extends Record<string, unknown>>({
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
       ) => setFormData({ ...formData, [control.name]: e.target.value }),
       className:
-        "w-full rounded-lg border border-gray-300 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500",
+        "w-full rounded-xl border border-indigo-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400",
     };
 
     switch (control.type) {
@@ -73,11 +73,10 @@ const CommonForm = <T extends Record<string, unknown>>({
             <input
               {...commonProps}
               type={showPassword[control.name] ? "text" : "password"}
-              className="w-full rounded-lg border border-gray-300 p-2 pr-10 text-sm focus:ring-2 focus:ring-indigo-500"
             />
             <button
               type="button"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-indigo-400 hover:text-indigo-600"
               onClick={() => togglePassword(control.name)}
             >
               {showPassword[control.name] ? <RxEyeOpen /> : <GoEyeClosed />}
@@ -94,7 +93,7 @@ const CommonForm = <T extends Record<string, unknown>>({
             }
           >
             <Select.Trigger
-              className="w-full inline-flex items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500"
+              className="w-full inline-flex items-center justify-between rounded-xl border border-indigo-300 bg-white px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-400"
               aria-label={control.label as string}
             >
               <Select.Value placeholder={control.label} />
@@ -102,7 +101,7 @@ const CommonForm = <T extends Record<string, unknown>>({
                 <ChevronDownIcon />
               </Select.Icon>
             </Select.Trigger>
-            <Select.Content className="bg-white rounded-md shadow-md">
+            <Select.Content className="bg-white rounded-xl shadow-md">
               <Select.Viewport>
                 {control.options?.map((opt) => (
                   <Select.Item
@@ -126,13 +125,13 @@ const CommonForm = <T extends Record<string, unknown>>({
               onCheckedChange={(checked) =>
                 setFormData({ ...formData, [control.name]: !!checked })
               }
-              className="h-[18px] w-[18px] flex items-center justify-center border border-gray-300 rounded bg-white"
+              className="h-[18px] w-[18px] flex items-center justify-center border border-indigo-300 rounded bg-white"
             >
               <Checkbox.Indicator>
                 <CheckIcon className="text-indigo-600" />
               </Checkbox.Indicator>
             </Checkbox.Root>
-            <span className="text-sm text-gray-800">{control.label}</span>
+            <span className="text-sm text-indigo-600">{control.label}</span>
           </label>
         );
 
@@ -154,19 +153,19 @@ const CommonForm = <T extends Record<string, unknown>>({
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
+    <form onSubmit={onSubmit} className="space-y-6">
       {formControls.map(({ section, fields }) => (
         <section key={section}>
-          <h2 className="mb-4 text-xl font-semibold text-indigo-700">
+          <h2 className="mb-4 text-lg font-semibold text-indigo-600">
             {section}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-4">
             {fields.map((control) => (
               <div key={control.name} className="flex flex-col gap-1">
                 {control.type !== "checkbox" && (
                   <label
                     htmlFor={control.name}
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-indigo-700"
                   >
                     {control.label}
                     {control.required && (
@@ -184,7 +183,7 @@ const CommonForm = <T extends Record<string, unknown>>({
       <Button
         type="submit"
         disabled={isBtnDisabled}
-        className="w-full rounded-lg bg-indigo-600 text-white py-2 hover:bg-indigo-700"
+        className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-3 font-semibold hover:scale-105 transition-transform"
       >
         {buttonText}
       </Button>
@@ -193,3 +192,4 @@ const CommonForm = <T extends Record<string, unknown>>({
 };
 
 export default CommonForm;
+

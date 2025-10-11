@@ -39,7 +39,7 @@ const Navbar = ({
   );
 
   return (
-    <nav className={`${bgColor} ${sticky ? "sticky top-0" : ""} w-full z-50`}>
+    <nav className={`${bgColor} ${sticky ? "fixed top-0" : ""} w-full z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Left items (brand or custom left items) */}
         <div className="flex items-center gap-4">
