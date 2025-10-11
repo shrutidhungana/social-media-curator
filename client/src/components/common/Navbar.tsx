@@ -16,7 +16,6 @@ const Navbar = ({
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Split nav items by position
   const leftItems = items.filter((i) => i.position === "left");
   const centerItems = items.filter(
     (i) => !i.position || i.position === "center"
@@ -39,9 +38,14 @@ const Navbar = ({
   );
 
   return (
-    <nav className={`${bgColor} ${sticky ? "fixed top-0" : ""} w-full z-50`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-        {/* Left items (brand or custom left items) */}
+    <header
+      className={`${bgColor} ${
+        sticky ? "fixed top-0 left-0" : ""
+      } w-full z-50 shadow-md`}
+      style={{ height: "4rem" }}
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-full">
+        {/* Left items */}
         <div className="flex items-center gap-4">
           {leftItems.length > 0 ? (
             leftItems.map(({ label, href, icon: Icon }) =>
@@ -71,7 +75,7 @@ const Navbar = ({
           )}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -80,7 +84,7 @@ const Navbar = ({
             {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile Drawer */}
       {mobileOpen && (
@@ -112,7 +116,7 @@ const Navbar = ({
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 

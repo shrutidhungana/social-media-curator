@@ -180,13 +180,14 @@ const CommonForm = <T extends Record<string, unknown>>({
         </section>
       ))}
 
-      <Button
-        type="submit"
-        disabled={isBtnDisabled}
-        className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-3 font-semibold hover:scale-105 transition-transform"
-      >
-        {buttonText}
-      </Button>
+      <div>
+        <Button
+          disabled={isBtnDisabled}
+          className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+        >
+          {buttonText}
+        </Button>
+      </div>
     </form>
   );
 };
