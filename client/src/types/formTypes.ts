@@ -19,4 +19,5 @@ export type FormField = {
 export type FormSection = {
   section: string;
   fields: FormField[];
+  fieldGroups?: string[][];
 };

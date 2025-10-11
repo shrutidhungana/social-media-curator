@@ -37,6 +37,12 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
         options: toOptions(["Male", "Female", "Other"]),
       },
     ],
+    fieldGroups: [
+      ["profilePicture"],
+      ["fullName", "userName"],
+      ["email", "phoneNumber"],
+      ["password", "confirmPassword", "gender"]
+    ]
   },
   {
     section: "🌍 Location Information",
@@ -55,6 +61,7 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
       },
       { name: "jobTitle", label: "Job Title", type: "text", required: false },
     ],
+    
   },
 ];
 
