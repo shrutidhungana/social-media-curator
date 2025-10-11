@@ -1,4 +1,4 @@
-import { FormSection } from "../types/formTypes";
+import { FormSection, FormField } from "../types/formTypes";
 
 const toOptions = (opts: string[]) =>
   opts.map((val) => ({ id: val, label: val }));
@@ -56,4 +56,9 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
       { name: "jobTitle", label: "Job Title", type: "text", required: false },
     ],
   },
+];
+
+export const LOGIN_FORM_FIELDS: FormField[] = [
+  { name: "email", label: "Email ", type: "email", required: true },
+  { name: "password", label: "Password ", type: "password", required: true },
 ];

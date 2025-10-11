@@ -12,18 +12,18 @@ type AuthLayoutProps = {
 const AuthLayout: React.FC<AuthLayoutProps> = ({
   children,
   title = "Welcome Back",
-  subtitle = "Sign in to continue your social media journey",
+  subtitle = "Sign in to continue your journey",
 }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 relative overflow-hidden px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-pink-500 to-purple-600 relative overflow-hidden px-4">
       {/* Floating orbs */}
       <motion.div
-        className="absolute top-10 left-10 w-32 h-32 bg-indigo-500/30 rounded-full blur-3xl"
+        className="absolute top-10 left-10 w-40 h-40 bg-pink-300/30 rounded-full blur-3xl"
         animate={{ y: [0, -20, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-10 right-10 w-40 h-40 bg-fuchsia-500/30 rounded-full blur-3xl"
+        className="absolute bottom-10 right-10 w-48 h-48 bg-indigo-300/30 rounded-full blur-3xl"
         animate={{ y: [0, 20, 0] }}
         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
       />
@@ -33,7 +33,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-8 space-y-6"
+        className="relative z-10 w-full max-w-xl bg-white rounded-3xl shadow-2xl p-10 space-y-6"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -41,10 +41,10 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="text-3xl font-bold text-indigo-400 tracking-tight">
+          <h1 className="text-3xl font-bold text-indigo-600 tracking-tight">
             {title}
           </h1>
-          <p className="mt-2 text-slate-300 text-sm">{subtitle}</p>
+          <p className="mt-2 text-indigo-500 text-sm">{subtitle}</p>
         </motion.div>
 
         <motion.div
