@@ -5,23 +5,32 @@ import {
   FaInfoCircle,
   FaSignInAlt,
 } from "react-icons/fa";
-import type { NavItem } from "@/types/navbarTypes";
+import type { NavItem, UserRole } from "@/types/navbarTypes";
 
-export const navbarItems: NavItem[] = [
-  { label: "Feed", href: "/", icon: FaHome, position: "center" },
+export const getNavbarItems = (role: UserRole): NavItem[] => [
+  {
+    label: "Feed",
+    href: (role) =>
+      role === "superadmin"
+        ? "/superadmin/feed"
+        : role === "moderator"
+        ? "/moderator/feed"
+        : "/user/feed",
+    icon: FaHome,
+    position: "center",
+  },
   { label: "About", href: "/about", icon: FaInfoCircle, position: "center" },
   {
     label: "Notification",
-    href: "/notification",
+    href: (role) =>
+      role === "superadmin"
+        ? "/superadmin/notification"
+        : role === "moderator"
+        ? "/moderator/notification"
+        : "/user/notification",
     icon: FaBell,
     position: "right",
   },
   { label: "Profile", href: "/profile", icon: FaUser, position: "right" },
-
-  {
-    label: "Login",
-    href: "/auth/login",
-    icon: FaSignInAlt,
-    position: "right",
-  },
+  { label: "Login", href: "/auth/login", icon: FaSignInAlt, position: "right" },
 ];

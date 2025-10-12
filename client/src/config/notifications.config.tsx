@@ -1,0 +1,92 @@
+import { NotificationItem } from "@/types/notificationTypes";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaYoutube,
+  FaTwitter,
+  FaTiktok,
+} from "react-icons/fa";
+import { SiThreads } from "react-icons/si";
+
+export const notifications: NotificationItem[] = [
+  {
+    id: "1",
+    type: "facebook",
+    message: "Politician A posted a new video on Facebook",
+    url: "https://facebook.com/post/1",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaFacebook,
+  },
+  {
+    id: "2",
+    type: "instagram",
+    message: "Politician B shared a new story on Instagram",
+    url: "https://instagram.com/post/2",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaInstagram,
+  },
+  {
+    id: "3",
+    type: "youtube",
+    message: "Politician C uploaded a new video on YouTube",
+    url: "https://youtube.com/watch?v=3",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaYoutube,
+  },
+  {
+    id: "4",
+    type: "tiktok",
+    message: "Politician D posted a TikTok video",
+    url: "https://tiktok.com/@d/video/4",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaTiktok,
+  },
+  {
+    id: "5",
+    type: "x",
+    message: "Politician E tweeted on X",
+    url: "https://twitter.com/post/5",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaTwitter,
+  },
+  {
+    id: "6",
+    type: "threads",
+    message: "Politician F posted on Threads",
+    url: "https://threads.net/post/6",
+    timestamp: new Date().toLocaleString(),
+    Icon: SiThreads,
+  },
+  {
+    id: "7",
+    type: "facebook",
+    message: "Politician G shared a live video on Facebook",
+    url: "https://facebook.com/post/7",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaFacebook,
+  },
+  {
+    id: "8",
+    type: "instagram",
+    message: "Politician H updated profile picture on Instagram",
+    url: "https://instagram.com/post/8",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaInstagram,
+  },
+  {
+    id: "9",
+    type: "youtube",
+    message: "Politician I started a new YouTube live session",
+    url: "https://youtube.com/watch?v=9",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaYoutube,
+  },
+  {
+    id: "10",
+    type: "tiktok",
+    message: "Politician J uploaded a new TikTok challenge",
+    url: "https://tiktok.com/@j/video/10",
+    timestamp: new Date().toLocaleString(),
+    Icon: FaTiktok,
+  },
+];

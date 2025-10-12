@@ -4,15 +4,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FaBars, FaTimes } from "react-icons/fa";
-import type { NavbarProps } from "@/types/navbarTypes";
+import type { NavbarProps, UserRole } from "@/types/navbarTypes";
 
-const Navbar = ({
+const Navbar: React.FC<NavbarProps & { userRole?: UserRole }> = ({
   brand = "Politician Curator",
   items,
   sticky = true,
   bgColor = "bg-gradient-to-r from-blue-600 to-purple-600",
   textColor = "text-white",
-}: NavbarProps) => {
+  userRole = "user",
+}) => {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,20 +23,31 @@ const Navbar = ({
   );
   const rightItems = items.filter((i) => i.position === "right");
 
-  const renderNavItem = (label: string, href: string, Icon?: any) => (
-    <Link
-      key={label}
-      href={href}
-      className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${
-        router.pathname === href
-          ? "bg-white text-blue-600"
-          : `${textColor} hover:bg-white hover:text-blue-600`
-      }`}
-    >
-      {Icon && <Icon size={18} />}
-      {label}
-    </Link>
-  );
+  // Resolve href: string or function returning string
+  const resolveHref = (href: string | ((role: UserRole) => string)) =>
+    typeof href === "function" ? href(userRole) : href;
+
+  const renderNavItem = (
+    label: string,
+    href: string | ((role: UserRole) => string),
+    Icon?: any
+  ) => {
+    const resolvedHref = resolveHref(href);
+    return (
+      <Link
+        key={label}
+        href={resolvedHref}
+        className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${
+          router.pathname === resolvedHref
+            ? "bg-white text-blue-600"
+            : `${textColor} hover:bg-white hover:text-blue-600`
+        }`}
+      >
+        {Icon && <Icon size={18} />}
+        {label}
+      </Link>
+    );
+  };
 
   return (
     <header
@@ -45,7 +57,7 @@ const Navbar = ({
       style={{ height: "4rem" }}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-full">
-        {/* Left items */}
+        {/* Left */}
         <div className="flex items-center gap-4">
           {leftItems.length > 0 ? (
             leftItems.map(({ label, href, icon: Icon }) =>
@@ -53,7 +65,7 @@ const Navbar = ({
             )
           ) : (
             <Link
-              href="/"
+              href="/user/feed"
               className={`text-2xl font-extrabold tracking-tight ${textColor} hover:text-gray-200 transition-colors`}
             >
               {brand}
@@ -61,21 +73,21 @@ const Navbar = ({
           )}
         </div>
 
-        {/* Center items */}
+        {/* Center */}
         <div className="hidden md:flex gap-4 items-center">
           {centerItems.map(({ label, href, icon: Icon }) =>
             renderNavItem(label, href, Icon)
           )}
         </div>
 
-        {/* Right items */}
+        {/* Right */}
         <div className="hidden md:flex gap-4 items-center">
           {rightItems.map(({ label, href, icon: Icon }) =>
             renderNavItem(label, href, Icon)
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -97,21 +109,24 @@ const Navbar = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col gap-6 mt-4">
-              {items.map(({ label, href, icon: Icon }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={`flex items-center gap-4 px-2 py-3 rounded-lg text-lg font-medium transition-colors duration-200 ${
-                    router.pathname === href
-                      ? "bg-white text-blue-600 font-semibold"
-                      : "text-white hover:bg-white hover:text-blue-600"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {Icon && <Icon size={20} />}
-                  {label}
-                </Link>
-              ))}
+              {items.map(({ label, href, icon: Icon }) => {
+                const resolvedHref = resolveHref(href);
+                return (
+                  <Link
+                    key={label}
+                    href={resolvedHref}
+                    className={`flex items-center gap-4 px-2 py-3 rounded-lg text-lg font-medium transition-colors duration-200 ${
+                      router.pathname === resolvedHref
+                        ? "bg-white text-blue-600 font-semibold"
+                        : "text-white hover:bg-white hover:text-blue-600"
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {Icon && <Icon size={20} />}
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
