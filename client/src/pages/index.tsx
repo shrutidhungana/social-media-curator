@@ -1,20 +1,32 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+"use client";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const HomeRedirect = () => {
+  const router = useRouter();
 
-export default function Home() {
-  return (
-    <div>
-      Hello ggg
-    </div>
-  );
-}
+  // Replace with your logic to get logged-in user role
+  const userRole: "superadmin" | "moderator" | "user" | undefined = undefined; // undefined = not logged in
+
+  useEffect(() => {
+    let redirectPath = "/feed"; // default guest feed
+    if (userRole) {
+      redirectPath =
+        userRole === "superadmin"
+          ? "/superadmin/feed"
+          : userRole === "moderator"
+          ? "/moderator/feed"
+          : "/user/feed";
+    } else {
+      // optional: redirect to /auth/login if not logged in
+      // redirectPath = "/auth/login";
+    }
+
+    router.replace(redirectPath);
+  }, [router, userRole]);
+
+  return null; // nothing to render on "/"
+};
+
+export default HomeRedirect;
