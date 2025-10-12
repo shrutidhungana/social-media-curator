@@ -10,7 +10,7 @@ const HomeRedirect = () => {
   const userRole: "superadmin" | "moderator" | "user" | undefined = undefined; // undefined = not logged in
 
   useEffect(() => {
-    let redirectPath = "/feed"; // default guest feed
+    let redirectPath = "/user/feed"; // default guest feed
     if (userRole) {
       redirectPath =
         userRole === "superadmin"
