@@ -1,13 +1,13 @@
 import React from "react";
-import NotificationLayout from "@/components/users/layout";
-import NotificationList from "@/components/users/NotificationList";
+import UserLayout from "@/components/users/Notifications/layout";
+import NotificationList from "@/components/users/Notifications/NotificationList";
 import { notifications } from "@/config/notifications.config";
 
 const UserNotificationPage: React.FC = () => {
   return (
-    <NotificationLayout>
+    <UserLayout>
       <NotificationList notifications={notifications} />
-    </NotificationLayout>
+    </UserLayout>
   );
 };
 

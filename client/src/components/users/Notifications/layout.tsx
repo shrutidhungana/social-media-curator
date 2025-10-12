@@ -9,7 +9,7 @@ type LayoutProps = {
   subtitle?: string;
 };
 
-const NotificationLayout: React.FC<LayoutProps> = ({
+const UserLayout: React.FC<LayoutProps> = ({
   children,
   title = "Your Notifications",
   subtitle = "Stay updated with the latest posts from politicians",
@@ -47,4 +47,4 @@ const NotificationLayout: React.FC<LayoutProps> = ({
   );
 };
 
-export default NotificationLayout;
+export default UserLayout;
