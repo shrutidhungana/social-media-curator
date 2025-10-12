@@ -29,6 +29,7 @@ export type FormControl = {
 export type SectionField = {
   section: string;
   fields: FormControl[];
+  fieldGroups?: string[][];
 };
 
 type FormProps<T extends Record<string, unknown>> = {
@@ -153,30 +154,94 @@ const CommonForm = <T extends Record<string, unknown>>({
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
-      {formControls.map(({ section, fields }) => (
+    <form onSubmit={onSubmit} className="space-y-8">
+      {formControls.map(({ section, fields, fieldGroups }) => (
         <section key={section}>
           <h2 className="mb-4 text-lg font-semibold text-indigo-600">
             {section}
           </h2>
-          <div className="flex flex-col gap-4">
-            {fields.map((control) => (
-              <div key={control.name} className="flex flex-col gap-1">
-                {control.type !== "checkbox" && (
-                  <label
-                    htmlFor={control.name}
-                    className="text-sm font-medium text-indigo-700"
-                  >
-                    {control.label}
-                    {control.required && (
-                      <span className="text-red-500 ml-1">*</span>
+
+          {/* --- If fieldGroups exist (Register) --- */}
+          {fieldGroups ? (
+            <div className="space-y-5">
+              {fieldGroups.map((group, groupIdx) => (
+                <div
+                  key={groupIdx}
+                  className={clsx(
+                    "grid gap-4",
+                    group.length === 1
+                      ? "grid-cols-1"
+                      : group.length === 2
+                      ? "grid-cols-1 sm:grid-cols-2"
+                      : "grid-cols-1 sm:grid-cols-3"
+                  )}
+                >
+                  {group.map((fieldName) => {
+                    const control = fields.find((f) => f.name === fieldName);
+                    if (!control) return null;
+                    return (
+                      <div key={control.name} className="flex flex-col gap-1">
+                        {control.type !== "checkbox" && (
+                          <label
+                            htmlFor={control.name}
+                            className="text-sm font-medium text-indigo-700"
+                          >
+                            {control.label}
+                            {control.required && (
+                              <span className="text-red-500 ml-1">*</span>
+                            )}
+                          </label>
+                        )}
+                        {renderInput(control)}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+
+              {/* Render any remaining fields not in fieldGroups */}
+              {fields
+                .filter(
+                  (f) => !fieldGroups.some((group) => group.includes(f.name))
+                )
+                .map((control) => (
+                  <div key={control.name} className="flex flex-col gap-1">
+                    {control.type !== "checkbox" && (
+                      <label
+                        htmlFor={control.name}
+                        className="text-sm font-medium text-indigo-700"
+                      >
+                        {control.label}
+                        {control.required && (
+                          <span className="text-red-500 ml-1">*</span>
+                        )}
+                      </label>
                     )}
-                  </label>
-                )}
-                {renderInput(control)}
-              </div>
-            ))}
-          </div>
+                    {renderInput(control)}
+                  </div>
+                ))}
+            </div>
+          ) : (
+            /* --- If no fieldGroups (Login) --- */
+            <div className="flex flex-col gap-4">
+              {fields.map((control) => (
+                <div key={control.name} className="flex flex-col gap-1">
+                  {control.type !== "checkbox" && (
+                    <label
+                      htmlFor={control.name}
+                      className="text-sm font-medium text-indigo-700"
+                    >
+                      {control.label}
+                      {control.required && (
+                        <span className="text-red-500 ml-1">*</span>
+                      )}
+                    </label>
+                  )}
+                  {renderInput(control)}
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       ))}
 
@@ -193,4 +258,3 @@ const CommonForm = <T extends Record<string, unknown>>({
 };
 
 export default CommonForm;
-

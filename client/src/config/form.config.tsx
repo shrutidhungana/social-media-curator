@@ -41,13 +41,34 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
       ["profilePicture"],
       ["fullName", "userName"],
       ["email", "phoneNumber"],
-      ["password", "confirmPassword", "gender"]
-    ]
+      ["password", "confirmPassword", "gender"],
+    ],
   },
   {
     section: "🌍 Location Information",
     fields: [
+      {
+        name: "state",
+        label: "State",
+        type: "select",
+        required: false,
+        options: toOptions([
+          "Koshi Pradesh",
+          "Madesh Pradesh",
+          "Bagmati Pradesh",
+          "Gandaki Pradesh",
+          "Lumbini Pradesh",
+          "Karnali Pradesh",
+          "SudurPaschim Pradesh",
+        ]),
+      },
+      { name: "district", label: "District", type: "text", required: true },
+      { name: "city", label: "City", type: "text", required: true },
       { name: "location", label: "Location", type: "text", required: true },
+    ],
+    fieldGroups: [
+      ["state", "district"],
+      ["city", "location"],
     ],
   },
   {
@@ -61,7 +82,7 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
       },
       { name: "jobTitle", label: "Job Title", type: "text", required: false },
     ],
-    
+    fieldGroups: [["organization", "jobTitle"]],
   },
 ];
 

@@ -11,34 +11,36 @@ type LayoutProps = {
 
 const AuthLayout: React.FC<LayoutProps> = ({
   children,
-  title = "Join Academia-Next",
+  title = "Join Social Media Curator",
   subtitle = "Create your account now",
 }) => {
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-tr from-indigo-800 via-purple-800 to-pink-700 px-4 pt-24 pb-8">
-      {/* pt-24 offsets the fixed navbar height */}
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 px-4 pt-24 pb-10">
+      {/* pt-24 ensures space for fixed navbar */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-4xl w-full bg-white rounded-xl shadow-lg p-8 space-y-6 hover:shadow-2xl transition-shadow duration-300"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="max-w-3xl w-full bg-white rounded-2xl shadow-xl p-10 space-y-8 border border-gray-100"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
           className="text-center"
         >
-          <h1 className="text-3xl font-extrabold text-[#DA70D6] animate-fadeIn">
+          <h1 className="text-4xl font-semibold text-gray-800 tracking-tight">
             {title}
           </h1>
-          <p className="mt-2 text-[#E0B0FF]">{subtitle}</p>
+          <p className="mt-3 text-base text-gray-500">{subtitle}</p>
+          <div className="mt-4 h-1 w-16 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-full mx-auto"></div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="relative"
         >
           {children}
         </motion.div>
