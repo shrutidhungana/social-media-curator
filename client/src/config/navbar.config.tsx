@@ -8,7 +8,7 @@ import {
 import type { NavItem } from "@/types/navbarTypes";
 
 export const navbarItems: NavItem[] = [
-  { label: "Feed", href: "/feed", icon: FaHome, position: "center" },
+  { label: "Feed", href: "/", icon: FaHome, position: "center" },
   { label: "About", href: "/about", icon: FaInfoCircle, position: "center" },
   {
     label: "Notification",
