@@ -22,7 +22,8 @@ export default function App({ Component, pageProps }: AppProps) {
         sticky
       />
 
-      <main className="mt-4">
+      <main className="flex-1 mt-16">
+        {/* mt-16 = navbar height */}
         <Component {...pageProps} />
       </main>
     </>
