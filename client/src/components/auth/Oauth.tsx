@@ -24,7 +24,7 @@ const OAuthButtons: React.FC<OAuthButtonsProps> = ({ providers }) => {
       transition={{ duration: 0.5 }}
       className="mt-8 flex flex-col gap-4"
     >
-      {providers.map(({ label, LogoComponent: Logo, onClick, id }) => (
+      {providers?.map(({ label, LogoComponent: Logo, onClick, id }) => (
         <Button
           key={id}
           onClick={onClick}

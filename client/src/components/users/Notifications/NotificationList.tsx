@@ -27,7 +27,7 @@ const NotificationList: React.FC<NotificationListProps> = ({
 
   return (
     <div className="flex flex-col gap-5">
-      {notifications.map((notification) => {
+      {notifications?.map((notification) => {
         const Icon = notification.Icon;
         const timeAgo = formatDistanceToNow(new Date(notification.timestamp), {
           addSuffix: true,

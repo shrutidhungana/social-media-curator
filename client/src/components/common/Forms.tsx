@@ -155,7 +155,7 @@ const CommonForm = <T extends Record<string, unknown>>({
 
   return (
     <form onSubmit={onSubmit} className="space-y-8">
-      {formControls.map(({ section, fields, fieldGroups }) => (
+      {formControls?.map(({ section, fields, fieldGroups }) => (
         <section key={section}>
           <h2 className="mb-4 text-lg font-semibold text-indigo-600">
             {section}
@@ -164,7 +164,7 @@ const CommonForm = <T extends Record<string, unknown>>({
           {/* --- If fieldGroups exist (Register) --- */}
           {fieldGroups ? (
             <div className="space-y-5">
-              {fieldGroups.map((group, groupIdx) => (
+              {fieldGroups?.map((group, groupIdx) => (
                 <div
                   key={groupIdx}
                   className={clsx(
@@ -176,7 +176,7 @@ const CommonForm = <T extends Record<string, unknown>>({
                       : "grid-cols-1 sm:grid-cols-3"
                   )}
                 >
-                  {group.map((fieldName) => {
+                  {group?.map((fieldName) => {
                     const control = fields.find((f) => f.name === fieldName);
                     if (!control) return null;
                     return (
@@ -201,10 +201,10 @@ const CommonForm = <T extends Record<string, unknown>>({
 
               {/* Render any remaining fields not in fieldGroups */}
               {fields
-                .filter(
+                ?.filter(
                   (f) => !fieldGroups.some((group) => group.includes(f.name))
                 )
-                .map((control) => (
+                ?.map((control) => (
                   <div key={control.name} className="flex flex-col gap-1">
                     {control.type !== "checkbox" && (
                       <label
@@ -224,7 +224,7 @@ const CommonForm = <T extends Record<string, unknown>>({
           ) : (
             /* --- If no fieldGroups (Login) --- */
             <div className="flex flex-col gap-4">
-              {fields.map((control) => (
+              {fields?.map((control) => (
                 <div key={control.name} className="flex flex-col gap-1">
                   {control.type !== "checkbox" && (
                     <label

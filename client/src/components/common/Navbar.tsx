@@ -59,8 +59,8 @@ const Navbar: React.FC<NavbarProps & { userRole?: UserRole }> = ({
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-full">
         {/* Left */}
         <div className="flex items-center gap-4">
-          {leftItems.length > 0 ? (
-            leftItems.map(({ label, href, icon: Icon }) =>
+          {leftItems?.length > 0 ? (
+            leftItems?.map(({ label, href, icon: Icon }) =>
               renderNavItem(label, href, Icon)
             )
           ) : (
@@ -75,14 +75,14 @@ const Navbar: React.FC<NavbarProps & { userRole?: UserRole }> = ({
 
         {/* Center */}
         <div className="hidden md:flex gap-4 items-center">
-          {centerItems.map(({ label, href, icon: Icon }) =>
+          {centerItems?.map(({ label, href, icon: Icon }) =>
             renderNavItem(label, href, Icon)
           )}
         </div>
 
         {/* Right */}
         <div className="hidden md:flex gap-4 items-center">
-          {rightItems.map(({ label, href, icon: Icon }) =>
+          {rightItems?.map(({ label, href, icon: Icon }) =>
             renderNavItem(label, href, Icon)
           )}
         </div>
@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps & { userRole?: UserRole }> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col gap-6 mt-4">
-              {items.map(({ label, href, icon: Icon }) => {
+              {items?.map(({ label, href, icon: Icon }) => {
                 const resolvedHref = resolveHref(href);
                 return (
                   <Link

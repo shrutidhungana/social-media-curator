@@ -1,14 +1,19 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import FeedLayout from "@/components/users/Feed/layout";
 
 
-function Feed() {
-    
-    return (
-      <>
-        <div>notification</div>
-        
-      </>
-    );
-}
 
-export default Feed;
+const UserFeedPage: React.FC = () => {
+  return (
+    <FeedLayout
+      title="Your Feed"
+      subtitle="Check out the latest posts from politicians"
+    >
+      Hello
+    </FeedLayout>
+  );
+};
+
+export default UserFeedPage;
