@@ -12,60 +12,87 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 
-
 const platformIcon = (platform?: string) => {
   switch (platform) {
     case "Facebook":
-      return <FaFacebookF className="text-blue-600" />;
+      return <FaFacebookF className="text-white" />;
     case "Twitter":
-      return <FaTwitter className="text-blue-400" />;
+      return <FaTwitter className="text-white" />;
     case "Instagram":
-      return <FaInstagram className="text-pink-500" />;
+      return <FaInstagram className="text-white" />;
     case "TikTok":
-      return <FaTiktok className="text-black-500" />;
+      return <FaTiktok className="text-white" />;
     default:
-      return <FaShare className="text-gray-400" />; // default icon
+      return <FaShare className="text-white" />;
+  }
+};
+
+const platformColor = (platform?: string) => {
+  switch (platform) {
+    case "Facebook":
+      return "bg-blue-600";
+    case "Twitter":
+      return "bg-blue-400";
+    case "Instagram":
+      return "bg-pink-500";
+    case "TikTok":
+      return "bg-black";
+    default:
+      return "bg-gray-400";
   }
 };
 
 const Post: React.FC<PostProps> = ({
-
   politicianName,
   politicianImage,
   content,
   platform,
   timeAgo,
+  title,
   onLike,
   onShare,
 }) => {
   return (
-    <div className="bg-white/90 rounded-xl shadow-md p-4 mb-4 hover:shadow-lg transition-shadow">
+    <div className="bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-shadow p-5 mb-5">
       {/* Header: Politician */}
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-3 mb-4">
         {politicianImage ? (
           <Image
             src={politicianImage}
             alt={politicianName}
-            width={40}
-            height={40}
+            width={50}
+            height={50}
             className="rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">
+          <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold text-lg">
             {politicianName.charAt(0)}
           </div>
         )}
+
         <div className="flex flex-col">
-          <span className="font-semibold text-[#1e3a8a] text-sm md:text-base">
+          <span className="font-semibold text-[#1e3a8a] text-base md:text-lg">
             {politicianName}
           </span>
           {timeAgo && <span className="text-xs text-gray-400">{timeAgo}</span>}
         </div>
-        <div className="ml-auto">{platformIcon(platform)}</div>
+
+        {/* Platform icon rounded */}
+        {platform && (
+          <div
+            className={`${platformColor(
+              platform
+            )} w-8 h-8 flex items-center justify-center rounded-full ml-auto`}
+          >
+            {platformIcon(platform)}
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <p className="text-gray-800 text-sm md:text-base mb-3">{content}</p>
+      <p className="text-gray-700 text-sm md:text-base mb-4 leading-relaxed">
+        {content}
+      </p>
 
       {/* Actions */}
       <div className="flex gap-4 text-gray-500 text-sm">
