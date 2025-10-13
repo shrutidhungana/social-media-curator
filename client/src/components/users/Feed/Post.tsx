@@ -48,7 +48,7 @@ const Post: React.FC<PostProps> = ({
   content,
   platform,
   timeAgo,
-  title,
+  partyName,
   onLike,
   onShare,
 }) => {
@@ -73,6 +73,9 @@ const Post: React.FC<PostProps> = ({
         <div className="flex flex-col">
           <span className="font-semibold text-[#1e3a8a] text-base md:text-lg">
             {politicianName}
+          </span>
+          <span className="font-sm text-blue-300 text-base md:text-lg">
+            {partyName}
           </span>
           {timeAgo && <span className="text-xs text-gray-400">{timeAgo}</span>}
         </div>

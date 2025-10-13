@@ -9,6 +9,8 @@ import TrendingPost from "@/components/users/Feed/TrendingPosts";
 import TrendingPoliticians from "@/components/users/Feed/TrendingPoliticians";
 import TopConstituencies from "@/components/users/Feed/TopConstituencies";
 import Post from "@/components/users/Feed/Post";
+import { politicians } from "@/config/politicians.config";
+import PoliticianCard from "@/components/users/Feed/PoliticianCard";
 
 import { searchItems } from "@/config/search.config";
 import { filterConfigs } from "@/config/filter.config";
@@ -77,12 +79,15 @@ const UserFeedPage: React.FC = () => {
                 maxItems={6}
               />
               <FeaturedPost featured={featuredPost} />
-              <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
-                Recent Posts
-              </h3>
-              {posts.map((post) => (
-                <Post key={post.id} {...post} />
-              ))}
+
+              <div className="flex flex-col gap-6">
+                <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
+                  Politicians Profile
+                </h3>
+                {politicians.map((pol) => (
+                  <PoliticianCard key={pol.id} politician={pol} />
+                ))}
+              </div>
               <SuggestedPoliticians politicians={suggestedPoliticians} />
             </div>
           </FeedLayout>
@@ -163,12 +168,15 @@ const UserFeedPage: React.FC = () => {
               maxItems={6}
             />
             <FeaturedPost featured={featuredPost} />
-            <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
-              Recent Posts
-            </h3>
-            {posts.map((post) => (
-              <Post key={post.id} {...post} />
-            ))}
+
+            <div className="flex flex-col gap-6">
+              <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
+                Politicians Profile
+              </h3>
+              {politicians.map((pol) => (
+                <PoliticianCard key={pol.id} politician={pol} />
+              ))}
+            </div>
             <SuggestedPoliticians politicians={suggestedPoliticians} />
           </div>
         </FeedLayout>

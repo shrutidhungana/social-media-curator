@@ -8,6 +8,7 @@ export const featuredPost: FeaturedPostType = {
     title: "Important Announcement by Politician A",
     content: "This is a featured post highlighting key updates...",
     politicianName: "Politician A",
+    partyName:"Party A",
     politicianImage: "",
     platform: "Facebook",
     timeAgo: "2h ago",

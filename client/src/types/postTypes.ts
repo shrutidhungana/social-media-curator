@@ -8,4 +8,5 @@ export type PostProps = {
   onLike?: () => void;
   onShare?: () => void;
   title?: string;
+  partyName: string;
 };

@@ -4,6 +4,7 @@ export const posts: PostProps[] = [
   {
     id: "1",
     politicianName: "A",
+    partyName: "A",
     politicianImage: "", // optional, can be placeholder
     content: "Announcing new policies for education reform in Nepal.",
     platform: "Facebook",
@@ -12,6 +13,7 @@ export const posts: PostProps[] = [
   {
     id: "2",
     politicianName: "B",
+    partyName: "B",
     politicianImage: "",
     content: "Visited local communities to understand the real issues.",
     platform: "Instagram",
@@ -20,6 +22,7 @@ export const posts: PostProps[] = [
   {
     id: "3",
     politicianName: "C",
+    partyName: "C",
     politicianImage: "",
     content: "Excited to share the upcoming budget proposals.",
     platform: "Twitter",
@@ -28,6 +31,7 @@ export const posts: PostProps[] = [
   {
     id: "4",
     politicianName: "D",
+    partyName: "D",
     content: "Launched a new initiative for digital literacy.",
     platform: "TikTok",
     timeAgo: "6h ago",
@@ -35,6 +39,7 @@ export const posts: PostProps[] = [
   {
     id: "5",
     politicianName: "E",
+    partyName: "E",
     content: "Hosting a Q&A session with citizens tomorrow.",
     platform: "Facebook",
     timeAgo: "8h ago",
@@ -42,6 +47,7 @@ export const posts: PostProps[] = [
   {
     id: "6",
     politicianName: "F",
+    partyName: "F",
     content: "Sharing key highlights from last week's parliament session.",
     platform: "Instagram",
     timeAgo: "10h ago",
@@ -49,6 +55,7 @@ export const posts: PostProps[] = [
   {
     id: "7",
     politicianName: "G",
+    partyName: "G",
     content: "Encouraging youth participation in local elections.",
     platform: "Twitter",
     timeAgo: "12h ago",
@@ -56,6 +63,7 @@ export const posts: PostProps[] = [
   {
     id: "8",
     politicianName: "H",
+    partyName: "H",
     content: "Highlighting infrastructure development progress.",
     platform: "TikTok",
     timeAgo: "14h ago",
@@ -63,6 +71,7 @@ export const posts: PostProps[] = [
   {
     id: "9",
     politicianName: "I",
+    partyName: "A",
     content: "Appreciating volunteers for their community service.",
     platform: "Facebook",
     timeAgo: "16h ago",
@@ -70,6 +79,7 @@ export const posts: PostProps[] = [
   {
     id: "10",
     politicianName: "J",
+    partyName: "A",
     content: "Sharing personal reflections on leadership and governance.",
     platform: "Instagram",
     timeAgo: "18h ago",

@@ -31,6 +31,6 @@ export const getNavbarItems = (role: UserRole): NavItem[] => [
     icon: FaBell,
     position: "right",
   },
-  { label: "Profile", href: "/profile", icon: FaUser, position: "right" },
+  
   { label: "Login", href: "/auth/login", icon: FaSignInAlt, position: "right" },
 ];
