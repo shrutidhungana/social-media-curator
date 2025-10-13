@@ -16,6 +16,8 @@ import { trendingPosts } from "@/config/trendingPosts.config";
 import { trendingPoliticians } from "@/config/trendingPoliticians.config";
 import { topConstituencies } from "@/config/topConstituencies.config";
 import { posts } from "@/config/posts.config";
+import FeaturedPost from "@/components/users/Feed/Featured";
+import { featuredPost } from "@/config/featured.config";
 
 const UserFeedPage: React.FC = () => {
   const [selectedFilters, setSelectedFilters] = useState<
@@ -71,6 +73,7 @@ const UserFeedPage: React.FC = () => {
                 constituencies={topConstituencies}
                 maxItems={6}
               />
+              <FeaturedPost featured={featuredPost} />
               {posts.map((post) => (
                 <Post key={post.id} {...post} />
               ))}
@@ -152,6 +155,7 @@ const UserFeedPage: React.FC = () => {
               constituencies={topConstituencies}
               maxItems={6}
             />
+            <FeaturedPost featured={featuredPost} />
             {posts.map((post) => (
               <Post key={post.id} {...post} />
             ))}
