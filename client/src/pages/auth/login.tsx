@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
 
         {/* Social Logins */}
         <OAuthButtons
-          providers={SOCIAL_PROVIDERS.map((p) => ({
+          providers={SOCIAL_PROVIDERS?.map((p) => ({
             ...p,
             onClick: () => handleOAuthClick(p.id),
           }))}

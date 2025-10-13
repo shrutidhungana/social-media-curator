@@ -46,7 +46,7 @@ const RegisterPage: React.FC = () => {
 
         {/* Social OAuth Buttons */}
         <OAuthButtons
-          providers={SOCIAL_PROVIDERS.map((provider) => ({
+          providers={SOCIAL_PROVIDERS?.map((provider) => ({
             ...provider,
             onClick: () => handleProviderClick(provider.id),
           }))}

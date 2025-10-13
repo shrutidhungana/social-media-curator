@@ -1,76 +1,62 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState, ReactNode } from "react";
+import { FaTimes, FaBars } from "react-icons/fa";
 import clsx from "clsx";
-import type { SidebarProps } from "@/types/sidebarTypes";
+
+type SidebarProps = {
+  children: ReactNode;
+  side?: "left" | "right"; // Which side the sidebar appears
+  width?: string; // Tailwind width class, default w-64
+  bgColor?: string; // Tailwind bg-color class
+};
 
 const Sidebar: React.FC<SidebarProps> = ({
-  title,
   children,
-  position = "left",
-  width = "w-72",
-  mobileWidth = "w-3/4",
-  bgColor = "bg-white/90 backdrop-blur-md",
+  side = "left",
+  width = "w-64",
+  bgColor = "bg-gradient-to-b from-blue-600/80 via-purple-600/70 to-pink-700/70",
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside
+      {/* Toggle button */}
+      <button
         className={clsx(
-          "hidden md:flex flex-col",
-          width,
-          "p-4 h-[calc(100vh-4rem)] sticky top-16",
-          bgColor,
-          "rounded-2xl shadow-lg border border-gray-200"
+          "fixed top-16 z-50 p-2 rounded-full shadow-md bg-white/80 hover:bg-white transition-colors",
+          side === "left" ? "left-4" : "right-4"
         )}
+        onClick={() => setOpen(!open)}
       >
-        {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
-        {children}
-      </aside>
+        {open ? <FaTimes size={20} /> : <FaBars size={20} />}
+      </button>
 
-      {/* Mobile Toggle Button */}
-      <div className="md:hidden fixed top-20 left-4 z-50">
-        <button
-          onClick={() => setOpen(true)}
-          className="p-2 rounded-md bg-indigo-600 text-white shadow-md"
-        >
-          <FaBars size={22} />
-        </button>
-      </div>
-
-      {/* Mobile Sidebar */}
+      {/* Overlay */}
       {open && (
         <div
-          className="md:hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
           onClick={() => setOpen(false)}
-        >
-          <div
-            className={clsx(
-              "absolute top-0",
-              position === "left" ? "left-0" : "right-0",
-              mobileWidth,
-              "h-full p-6 shadow-xl overflow-auto",
-              bgColor,
-              "rounded-tr-2xl rounded-br-2xl"
-            )}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-6">
-              {title && <h2 className="text-xl font-semibold">{title}</h2>}
-              <button
-                onClick={() => setOpen(false)}
-                className="p-1 rounded-md text-gray-700 hover:text-gray-900"
-              >
-                <FaTimes size={20} />
-              </button>
-            </div>
-            {children}
-          </div>
-        </div>
+        ></div>
       )}
+
+      {/* Sidebar panel */}
+      <div
+        className={clsx(
+          "fixed top-16 h-[calc(100vh-4rem)] z-50 shadow-lg overflow-auto transition-transform transform",
+          width,
+          bgColor,
+          side === "left"
+            ? open
+              ? "translate-x-0 left-0"
+              : "-translate-x-full left-0"
+            : open
+            ? "translate-x-0 right-0"
+            : "translate-x-full right-0"
+        )}
+      >
+        <div className="p-4 flex flex-col gap-4">{children}</div>
+      </div>
     </>
   );
 };

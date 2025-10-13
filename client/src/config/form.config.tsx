@@ -1,7 +1,7 @@
 import { FormSection, FormField } from "../types/formTypes";
 
 const toOptions = (opts: string[]) =>
-  opts.map((val) => ({ id: val, label: val }));
+  opts?.map((val) => ({ id: val, label: val }));
 
 export const REGISTER_FORM_FIELDS: FormSection[] = [
   {
@@ -51,7 +51,7 @@ export const REGISTER_FORM_FIELDS: FormSection[] = [
         name: "state",
         label: "State",
         type: "select",
-        required: false,
+        required: true,
         options: toOptions([
           "Koshi Pradesh",
           "Madesh Pradesh",
