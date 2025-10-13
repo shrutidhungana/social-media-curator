@@ -1,0 +1,77 @@
+import { PostProps } from "@/types/postTypes";
+
+export const posts: PostProps[] = [
+  {
+    id: "1",
+    politicianName: "A",
+    politicianImage: "", // optional, can be placeholder
+    content: "Announcing new policies for education reform in Nepal.",
+    platform: "Facebook",
+    timeAgo: "2h ago",
+  },
+  {
+    id: "2",
+    politicianName: "B",
+    politicianImage: "",
+    content: "Visited local communities to understand the real issues.",
+    platform: "Instagram",
+    timeAgo: "3h ago",
+  },
+  {
+    id: "3",
+    politicianName: "C",
+    politicianImage: "",
+    content: "Excited to share the upcoming budget proposals.",
+    platform: "Twitter",
+    timeAgo: "5h ago",
+  },
+  {
+    id: "4",
+    politicianName: "D",
+    content: "Launched a new initiative for digital literacy.",
+    platform: "TikTok",
+    timeAgo: "6h ago",
+  },
+  {
+    id: "5",
+    politicianName: "E",
+    content: "Hosting a Q&A session with citizens tomorrow.",
+    platform: "Facebook",
+    timeAgo: "8h ago",
+  },
+  {
+    id: "6",
+    politicianName: "F",
+    content: "Sharing key highlights from last week's parliament session.",
+    platform: "Instagram",
+    timeAgo: "10h ago",
+  },
+  {
+    id: "7",
+    politicianName: "G",
+    content: "Encouraging youth participation in local elections.",
+    platform: "Twitter",
+    timeAgo: "12h ago",
+  },
+  {
+    id: "8",
+    politicianName: "H",
+    content: "Highlighting infrastructure development progress.",
+    platform: "TikTok",
+    timeAgo: "14h ago",
+  },
+  {
+    id: "9",
+    politicianName: "I",
+    content: "Appreciating volunteers for their community service.",
+    platform: "Facebook",
+    timeAgo: "16h ago",
+  },
+  {
+    id: "10",
+    politicianName: "J",
+    content: "Sharing personal reflections on leadership and governance.",
+    platform: "Instagram",
+    timeAgo: "18h ago",
+  },
+];

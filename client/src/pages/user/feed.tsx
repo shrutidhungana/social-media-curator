@@ -7,11 +7,15 @@ import Search from "@/components/common/Search";
 import Filter from "@/components/common/Filter";
 import TrendingPost from "@/components/users/Feed/TrendingPosts";
 import TrendingPoliticians from "@/components/users/Feed/TrendingPoliticians";
+import TopConstituencies from "@/components/users/Feed/TopConstituencies";
+import Post from "@/components/users/Feed/Post";
 
 import { searchItems } from "@/config/search.config";
 import { filterConfigs } from "@/config/filter.config";
 import { trendingPosts } from "@/config/trendingPosts.config";
 import { trendingPoliticians } from "@/config/trendingPoliticians.config";
+import { topConstituencies } from "@/config/topConstituencies.config";
+import { posts } from "@/config/posts.config";
 
 const UserFeedPage: React.FC = () => {
   const [selectedFilters, setSelectedFilters] = useState<
@@ -32,7 +36,7 @@ const UserFeedPage: React.FC = () => {
       {/* Desktop layout */}
       <div className="hidden md:flex h-[calc(100vh-4rem)]">
         {/* Left Sidebar: Search + Filters */}
-        <Sidebar width="w-64" title="Search & Filter">
+        <Sidebar width="w-64" title="Search & Filter" position="left">
           {searchItems.map((item) => (
             <div key={item.id} className="mb-4 last:mb-0">
               <Search searchItem={item} onSearch={handleSearch} />
@@ -62,13 +66,19 @@ const UserFeedPage: React.FC = () => {
             title="Your Feed"
             subtitle="Check out the latest posts from politicians"
           >
-            <div className="p-4">
-              <p className="text-gray-900 text-lg">Feed content goes here...</p>
+            <div className="p-4 flex flex-col gap-4">
+              <TopConstituencies
+                constituencies={topConstituencies}
+                maxItems={6}
+              />
+              {posts.map((post) => (
+                <Post key={post.id} {...post} />
+              ))}
             </div>
           </FeedLayout>
         </div>
 
-        {/* Right Sidebar: Trending */}
+        {/* Right Sidebar: Trending + Top Constituencies */}
         <Sidebar width="w-64" title="Trending" position="right">
           <h3 className="text-lg font-semibold text-[#1e3a8a] mb-1">
             Trending Posts
@@ -92,6 +102,7 @@ const UserFeedPage: React.FC = () => {
           title="Your Feed"
           subtitle="Check out the latest posts from politicians"
         >
+          {/* Sidebar (Stacked above main content) */}
           <Sidebar title="Search & Filter">
             {searchItems.map((item) => (
               <div key={item.id} className="mb-4 last:mb-0">
@@ -135,8 +146,15 @@ const UserFeedPage: React.FC = () => {
             />
           </Sidebar>
 
-          <div className="p-4">
-            <p className="text-gray-900 text-lg">Feed content goes here...</p>
+          {/* Main Feed */}
+          <div className="p-4 flex flex-col gap-4">
+            <TopConstituencies
+              constituencies={topConstituencies}
+              maxItems={6}
+            />
+            {posts.map((post) => (
+              <Post key={post.id} {...post} />
+            ))}
           </div>
         </FeedLayout>
       </div>
