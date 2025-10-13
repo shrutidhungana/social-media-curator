@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Badge } from "@radix-ui/themes";
 import { Constituency } from "@/types/topConstituenciesTypes";
 
 type TopConstituenciesProps = {
@@ -14,21 +15,25 @@ const TopConstituencies: React.FC<TopConstituenciesProps> = ({
 }) => {
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
+      <h3 className="text-lg font-semibold text-[#1e3a8a] mb-4">
         Top Constituencies This Week
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {constituencies.slice(0, maxItems).map((item, idx) => (
           <div
             key={idx}
-            className="p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white/90 flex justify-between items-center"
+            className="flex justify-between items-center p-3 rounded-xl shadow-sm hover:shadow-md transition-shadow 
+                       bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50"
           >
             <span className="text-sm md:text-base font-medium text-[#1e3a8a] truncate">
               {item.name}
             </span>
-            <span className="text-xs text-gray-500 font-semibold">
+            <Badge
+              variant="solid"
+              className="px-2 py-1 text-xs font-semibold bg-blue-600 text-white rounded-full shadow-sm"
+            >
               {item.engagementCount}
-            </span>
+            </Badge>
           </div>
         ))}
       </div>

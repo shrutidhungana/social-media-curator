@@ -18,6 +18,9 @@ import { topConstituencies } from "@/config/topConstituencies.config";
 import { posts } from "@/config/posts.config";
 import FeaturedPost from "@/components/users/Feed/Featured";
 import { featuredPost } from "@/config/featured.config";
+import { suggestedPoliticians } from "@/config/suggestedPoliticians.config";
+import SuggestedPoliticians from "@/components/users/Feed/SuggestedPoliticians";
+
 
 const UserFeedPage: React.FC = () => {
   const [selectedFilters, setSelectedFilters] = useState<
@@ -74,9 +77,13 @@ const UserFeedPage: React.FC = () => {
                 maxItems={6}
               />
               <FeaturedPost featured={featuredPost} />
+              <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
+                Recent Posts
+              </h3>
               {posts.map((post) => (
                 <Post key={post.id} {...post} />
               ))}
+              <SuggestedPoliticians politicians={suggestedPoliticians} />
             </div>
           </FeedLayout>
         </div>
@@ -156,9 +163,13 @@ const UserFeedPage: React.FC = () => {
               maxItems={6}
             />
             <FeaturedPost featured={featuredPost} />
+            <h3 className="text-lg font-semibold text-[#1e3a8a] mb-3">
+              Recent Posts
+            </h3>
             {posts.map((post) => (
               <Post key={post.id} {...post} />
             ))}
+            <SuggestedPoliticians politicians={suggestedPoliticians} />
           </div>
         </FeedLayout>
       </div>
