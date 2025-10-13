@@ -6,6 +6,6 @@ export type PostProps = {
   platform?: "Facebook" | "Twitter" | "Instagram" | string;
   timeAgo?: string;
   onLike?: () => void;
-    onShare?: () => void;
-    
+  onShare?: () => void;
+  title?: string;
 };
