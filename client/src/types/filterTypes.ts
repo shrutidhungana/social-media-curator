@@ -1,11 +1,6 @@
-export type FilterOption ={
+export type FilterConfig = {
+  id: string;
   label: string;
-  value: string;
-}
-
-export type FilterProps = {
-  options: FilterOption[];
-  selected?: string;
-  onChange: (value: string) => void;
-  className?: string;
-}
+  placeholder: string;
+  options: { label: string; value: string }[];
+};

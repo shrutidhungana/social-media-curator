@@ -1,61 +1,57 @@
 "use client";
 
-import React, { useState, ReactNode } from "react";
-import { FaTimes, FaBars } from "react-icons/fa";
+import React, { ReactNode } from "react";
 import clsx from "clsx";
 
 type SidebarProps = {
   children: ReactNode;
-  side?: "left" | "right"; // Which side the sidebar appears
-  width?: string; // Tailwind width class, default w-64
-  bgColor?: string; // Tailwind bg-color class
+  width?: string;
+  title?: string;
+  position?: "left" | "right";
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
   children,
-  side = "left",
+  title,
   width = "w-64",
-  bgColor = "bg-gradient-to-b from-blue-600/80 via-purple-600/70 to-pink-700/70",
+  position = "left",
 }) => {
-  const [open, setOpen] = useState(false);
+  const borderClass =
+    position === "left"
+      ? "border-r border-gray-300 rounded-tr-2xl rounded-br-2xl"
+      : "border-l border-gray-300 rounded-tl-2xl rounded-bl-2xl";
 
   return (
     <>
-      {/* Toggle button */}
-      <button
-        className={clsx(
-          "fixed top-16 z-50 p-2 rounded-full shadow-md bg-white/80 hover:bg-white transition-colors",
-          side === "left" ? "left-4" : "right-4"
-        )}
-        onClick={() => setOpen(!open)}
-      >
-        {open ? <FaTimes size={20} /> : <FaBars size={20} />}
-      </button>
-
-      {/* Overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        ></div>
-      )}
-
-      {/* Sidebar panel */}
+      {/* Desktop Sidebar */}
       <div
         className={clsx(
-          "fixed top-16 h-[calc(100vh-4rem)] z-50 shadow-lg overflow-auto transition-transform transform",
+          "hidden md:flex flex-col flex-shrink-0",
           width,
-          bgColor,
-          side === "left"
-            ? open
-              ? "translate-x-0 left-0"
-              : "-translate-x-full left-0"
-            : open
-            ? "translate-x-0 right-0"
-            : "translate-x-full right-0"
+          "min-h-[calc(100vh-4rem)] p-6 box-border",
+          "bg-gradient-to-br from-[#F8FAFC] via-[#EBF2F7] to-[#E2E8F0]",
+          borderClass,
+          "text-[#1e3a8a] shadow-lg"
         )}
       >
-        <div className="p-4 flex flex-col gap-4">{children}</div>
+        {title && (
+          <h2 className="text-2xl font-bold mb-6 tracking-tight">{title}</h2>
+        )}
+        <div className="flex-1 flex flex-col gap-4">{children}</div>
+      </div>
+
+      {/* Mobile Sidebar */}
+      <div
+        className={clsx(
+          "flex md:hidden flex-col w-full p-4 mb-4",
+          "bg-gradient-to-br from-[#F8FAFC] via-[#EBF2F7] to-[#E2E8F0]",
+          "border-b border-gray-300 rounded-b-xl text-[#1e3a8a]"
+        )}
+      >
+        {title && (
+          <h2 className="text-xl font-semibold mb-4 tracking-tight">{title}</h2>
+        )}
+        <div className="flex flex-col gap-3">{children}</div>
       </div>
     </>
   );

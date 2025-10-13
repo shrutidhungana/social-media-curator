@@ -1,31 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { SearchItem } from "@/types/searchTypes";
 import { FaSearch } from "react-icons/fa";
 
 type SearchProps = {
-  placeholder?: string;
-  value?: string;
-  onChange?: (value: string) => void;
+  searchItem: SearchItem;
+  onSearch?: (query: string, id: string) => void;
 };
 
-const Search: React.FC<SearchProps> = ({
-  placeholder = "Search...",
-  value = "",
-  onChange,
-}) => {
-  return (
-    <div className="relative w-full max-w-md mx-auto bg-white">
-      {/* Search Icon */}
-      <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400" />
+const Search: React.FC<SearchProps> = ({ searchItem, onSearch }) => {
+  const [query, setQuery] = useState("");
 
-      {/* Input */}
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    onSearch?.(e.target.value, searchItem.id);
+  };
+
+  return (
+    <div className="flex items-center gap-3 bg-white/90 rounded-2xl p-3 shadow-md hover:shadow-lg transition-all duration-200 w-full max-w-[16rem] sm:max-w-[17rem] md:max-w-[15rem] lg:max-w-[15.5rem]">
+      <FaSearch className="text-gray-500 flex-shrink-0" />
       <input
         type="text"
-        value={value}
-        onChange={(e) => onChange && onChange(e.target.value)}
-        placeholder={placeholder}
-        className="pl-10 pr-4 py-3 rounded-full bg-white/90 text-gray-900 placeholder-gray-400 shadow-md focus:shadow-lg focus:outline-none transition-all duration-300 w-full"
+        value={query}
+        onChange={handleSearch}
+        placeholder={searchItem.placeholder}
+        className="flex-1 bg-transparent outline-none text-gray-800 placeholder-gray-400 text-sm md:text-base"
       />
     </div>
   );
